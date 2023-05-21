@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg navbar-light pt-2 p-4 pr-5 pb-5">
+  <div class="d-flex justify-content-end col-12">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a
+          class="nav-link p-2"
+          [routerLink]="['/search']"
+          style="font-size: 1.2em"
+          >Search</a
+        >
+      </li>
+      <li class="nav-item pl-2 pr-2 p-lg-0 border">
+        <a
+          class="nav-link active p-2"
+          [routerLink]="['/bookings']"
+          style="font-size: 1.2em"
+          >My Bookings</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div
+  *ngIf="!len"
+  class="res-empty text-danger m-auto text-center bg-white mt-5"
+  style="border-radius: 25px; z-index: 2"
+>
+  <h3 style="font-size: 1.5em">No reservations to show</h3>
+</div>
+
+<h2
+  *ngIf="data && len"
+  class="text-center font-weight-lighter mb-5"
+  style="font-size: 2.1em"
+>
+  List of your reservations
+</h2>
+
+<div *ngIf="data && len" class="table-responsive mt-1 mb-2">
+  <!-- <h2 class="text-center font-weight-lighter mb-4">List of your reservations</h2> -->
+  <table class="table table-light table-hover" style="width: 85%">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Business Name</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">E-mail</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of data">
+        <th scope="row">{{ data.indexOf(d) + 1 }}</th>
+        <td>{{ d.name }}</td>
+        <td>{{ d.Date }}</td>
+        <td>{{ d.Hours }}:{{ d.Minutes }}</td>
+        <td>{{ d.Email }}</td>
+        <td>
+          <img
+            src="../../assets/images/delete.png"
+            width="20px"
+            height="20px"
+            alt="delete"
+            (click)="cancelRes(data.indexOf(d))"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

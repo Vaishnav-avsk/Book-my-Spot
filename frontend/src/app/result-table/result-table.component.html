@@ -1,0 +1,31 @@
+<div class="table-responsive mt-5 mb-4">
+  <table class="table table-striped table-light">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Image</th>
+        <th scope="col">Business Name</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Distance (miles)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of yelpData" (click)="moreInfo(data.id)">
+        <th scope="row">{{ yelpData.indexOf(data) + 1 }}</th>
+        <td>
+          <img
+            src="{{
+              data.image_url
+                ? data.image_url
+                : 'https://s24.q4cdn.com/143307695/files/images/newsroom/2022/Burst-Q4.jpg'
+            }}"
+            alt="image"
+          />
+        </td>
+        <td class="fs-lighter">{{ data.name }}</td>
+        <td class="fs-lighter">{{ data.rating }}</td>
+        <td class="fs-lighter">{{ (data.distance / 1609).toFixed(0) }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
